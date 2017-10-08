@@ -55,20 +55,24 @@ def show_time():
             taikan="\n暑くて汗が出るね"
         elif DI>85:
             taikan="\n暑くてたまらないね"
+        for num in range(20):
+            inf = ser.readline()
+            touch = (inf[54:59])
+            touch2 = touch.decode('utf-8')
+            touch3 = float(touch2)
+            if touch3<600:
+                audio()
 
-        if touch3<600:
-            tatti="\nたっちー"
-            audio()
-        else:
-            tatti="\n"
 
-        inf3 = kion + situdo + kiatsu + sisu + taikan+tatti
+            sleep(0.1)
+
+        inf3 = kion + situdo + kiatsu + sisu + taikan
         buff.set(inf3)
         #ser.close()#バグが多い場合は戻す
     except ValueError:
         show_time()
         print("エラーだよ")
-    root.after(1000, show_time)
+    root.after(200, show_time)
 
 def audio():
     # mixerモジュールの初期化
